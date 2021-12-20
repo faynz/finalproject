@@ -24,6 +24,9 @@ aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://
 # Attaching the S3FullAccess Policy to this role
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name AmazonS3FullAccess --policy-document file://policy_role.json
 
+# delay for role to be created
+sleep 20
+
 # pipeline creation
 aws codepipeline create-pipeline --cli-input-json file://pipeline.json --region us-east-1
 
