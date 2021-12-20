@@ -23,7 +23,7 @@
                             "Branch": "main",
                             "OAuthToken": "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",
                             "Owner": "faynz",
-                            "PollForSourceChanges": "false",
+                            "PollForSourceChanges": "true",
                             "Repo": "finalproject-log8415"
                         },
                         "outputArtifacts": [
