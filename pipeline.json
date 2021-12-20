@@ -1,68 +1,70 @@
 {
-  "pipeline": {
-    "roleArn": "arn:aws:iam::264798705750:role/service-role/role-pipeline-log8415",
-    "stages": [
-      {
-        "Name": "Source",
-        "Actions": [
-          {
-            "InputArtifacts": [],
-            "ActionTypeId": {
-              "Version": "1",
-              "Owner": "ThirdParty",
-              "Category": "Source",
-              "Provider": "GitHub"
+    "pipeline": {
+        "name": "pipeline",
+        "roleArn": "arn:aws:iam::264798705750:role/role2-pipeline-log8415",
+        "artifactStore": {
+            "type": "S3",
+            "location": "artifacts-log8415"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "ThirdParty",
+                            "provider": "GitHub",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "Branch": "main",
+                            "OAuthToken": "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",
+                            "Owner": "faynz",
+                            "PollForSourceChanges": "false",
+                            "Repo": "finalproject-log8415"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-east-1",
+                        "namespace": "SourceVariables"
+                    }
+                ]
             },
-            "OutputArtifacts": [
-              {
-                "Name": "SourceArtifact"
-              }
-            ],
-            "RunOrder": 1,
-            "Configuration": {
-              "Owner": "faynz",
-              "Repo": "finalproject-log8415",
-              "PollForSourceChanges": "true",
-              "Branch": "main",
-              "OAuthToken": "{{resolve:secretsmanager:MyGitHubSecret:SecretString:token}}"
-            },
-            "Name": "ApplicationSource"
-          }
-        ]
-      },
-      {
-        "Name": "Deploy",
-        "Actions": [
-          {
-            "Name": "Deploy",
-            "ActionTypeId": {
-              "Category": "Deploy",
-              "Owner": "AWS",
-              "Provider": "CodeDeploy",
-              "Version": "1"
-            },
-            "RunOrder": 1,
-            "Configuration": {
-              "ApplicationName": "application-log8415",
-              "DeploymentGroupName": "deployment-group-log8415"
-            },
-            "OutputArtifacts": [],
-            "InputArtifacts": [
-              {
-                "Name": "SourceArtifact"
-              }
-            ],
-            "Region": "us-east-1",
-            "Namespace": "DeployVariables"
-          }
-        ]
-      }
-    ],
-    "artifactStore": {
-      "type": "S3",
-      "location": "artifacts"
-    },
-    "name": "pipeline",
-    "version": 1
-  }
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "Deploy",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "S3",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BucketName": "bucket-log8415",
+                            "Extract": "true"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "region": "us-east-1",
+                        "namespace": "DeployVariables"
+                    }
+                ]
+            }
+        ],
+        "version": 1
+    }
 }

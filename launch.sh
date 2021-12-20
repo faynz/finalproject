@@ -38,10 +38,10 @@ ROLE_NAME="role2-pipeline-log8415"
 # Attaching the S3FullAccess Policy to this role
 # aws iam put-role-policy --role-name $ROLE_NAME --policy-name AmazonS3FullAccess --policy-document file://policy_role.json
 
-ROLE_ARN="arn:aws:iam::264798705750:role/service-role/role-pipeline-log8415"
+# ROLE_ARN="arn:aws:iam::264798705750:role/service-role/role-pipeline-log8415"
 # pipeline creation
-# aws codepipeline create-pipeline --cli-input-json file://pipeline.json
+aws codepipeline create-pipeline --cli-input-json file://pipeline.json --region us-east-1
 
-aws codepipeline get-pipeline --name MyFirstPipeline
+# aws codepipeline get-pipeline --name pipeline2 --region us-east-1
 
 # aws sts get-caller-identity
