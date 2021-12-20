@@ -1,7 +1,7 @@
 {
     "pipeline": {
         "name": "pipeline",
-        "roleArn": "arn:aws:iam::264798705750:role/role2-pipeline-log8415",
+        "roleArn": "arn:aws:iam::264798705750:role/role-pipeline-log8415",
         "artifactStore": {
             "type": "S3",
             "location": "artifacts-log8415"
