@@ -17,15 +17,42 @@ aws s3api put-bucket-policy --bucket $BUCKET_NAME_DEPLOY --policy file://policy_
 aws s3api put-bucket-policy --bucket $BUCKET_NAME_ARTEFACT --policy file://policy_artifacts.json
 aws s3 website s3://$BUCKET_NAME_DEPLOY/ --index-document index.html
 
-# policy copied from the AWS policies (S3FullAccess)
+# # policy copied from the AWS policies (S3FullAccess)
 ROLE_NAME="role-pipeline-log8415"
 # Creating new Role and assuming role
 aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://role_policy_document.json
 # Attaching the S3FullAccess Policy to this role
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name AmazonS3FullAccess --policy-document file://policy_role.json
 
-# delay for role to be created
-sleep 20
+delay for role to be created
+sleep 10
+
+# EC2 setup ==========================================================================================
+# INSTANCE_PROFILE_NAME="ec2-profile"
+# aws iam create-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME
+# aws iam add-role-to-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME --role-name $INSTANCE_PROFILE_NAME
+
+# # Creating Keys
+# KEY_NAME="finalProject-log8415-key"
+# aws ec2 create-key-pair --key-name $KEY_NAME --key-type rsa
+
+# # Create Security Groups
+# SG_NAME="final-project-sg"
+# # aws ec2 create-security-group --group-name MySecurityGroup --group-name $SG_NAME
+
+# #Create ubuntu 20.04 EC2 instance (with the corresponding ami)
+# aws ec2 run-instances --image-id ami-04505e74c0741db8d --iam-instance-profile Name=$INSTANCE_PROFILE_NAME --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-groups $SG_NAME --user-data file://ec2_dependencies.txt
+
+# delay for
+# sleep 10
+
+# TOPIC_NAME=""
+# TOPIC_ARN=$(aws sns create-topic --name $TOPIC_NAME | py -c "import sys, json; print(json.load(sys.stdin)['TopicArn'])")
+# END_POINT="<ENTER YOUR END POINT URL>"
+# echo $TOPIC_ARN
+# aws sns subscribe --topic-arn $TOPIC_ARN --protocol http --notification-endpoint $END_POINT
+
+# ====================================================================================================
 
 # pipeline creation
 aws codepipeline create-pipeline --cli-input-json file://pipeline.json --region us-east-1
