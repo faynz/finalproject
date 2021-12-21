@@ -1,4 +1,4 @@
-% Created 2021-12-20 Mon 20:15
+% Created 2021-12-20 Mon 20:43
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -43,17 +43,15 @@
   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
   \center
   \textsc{\LARGE Polytechnique Montréal}\\[1.5cm]
-  \textsc{\Large LOG8415 : Lab 2}\\[0.5cm]
+  \textsc{\Large LOG8415 : Final Project}\\[0.5cm]
   \textsc{\large Advanced Concepts in Cloud Computing}\\[0.5cm]
   \HRule\\[0.4cm]
-          {\huge\bfseries MapReduce with Hadoop and Spark on AWS}\\[0.4cm]
+          {\huge\bfseries Fully automated web site deployment using S3 static pages}\\[0.4cm]
           \HRule\\[1.5cm]
                   {\large\textit{Authors}}\\
-                  Yanis \textsc{Toubal} (1960266)\\
-                  Guy-Hermann \textsc{Adiko} (2005119)\\
                   Estefan \textsc{Vega-Calcada} (1934346)\\
                   \vfill\vfill\vfill {\large\today} \vfill\vfill
-                  \includegraphics{poly_logo.png}\\[1cm]
+                  \includegraphics{./images/poly_logo.png}\\[1cm]
                   \vfill
 \end{titlepage}
 
@@ -69,8 +67,8 @@ When dealing with Big Data, we can choose from a variety of softwares to manage 
 \pagebreak
 
 \section{Introduction} \label{sec:introduction}
-\paragraph{} In this laboratory, we had the opportunity to explore the MapReduce paradigm. We successfully compared the performance of the algorithm on Linux, Hadoop and Spark with different experiments. At first, we compared their performances in a simple WordCount program and observed the differences. The WordCount program simply counts the occurrence of every single word in a document. We ran it all on AWS, Amazon's cloud computing platform, by creating an EC2 instance.
-Then, we used Hadoop and MapReduce to solve a social networking problem and process bigger data sets. The goal is to suggest friendships based on their connection (A.K.A People You May Know Algorithm).
+\paragraph{} For my final project of the “Advanced Concepts of Cloud Computing” class, I chose to automate the deployment of a simple HTML web page using the various services offered on AWS. In this report, I will explain how I successfully used an S3 bucket and a pipeline to do so. The following is divided into X sections: the issue
+
 \bigskip
 
 \noindent This paper presents some of our experiments with a WordCount program (section ~\ref{sec:WordCount}), the results of our performance comparison between Hadoop and Linux (section ~\ref{sec:HadoopVsLinux}), the results of our performance comparison between Hadoop and Spark (section ~\ref{sec:HadoopVsSpark}) and our solution to the MapReduce program that implements the \textit{People You
@@ -290,31 +288,38 @@ This class is used as the output (value of the key-value pair) of the Mapper. It
   \end{center}
 \end{enumerate}
 
-\subsection{PeopleYouMayKnow}
+\subsection{Demonstration}
 
-\bigskip The link for the git repo that contains the code is:
-\url{https://github.com/ytoubal/SocialMediaProblem}
+\bigskip The link for the git repo that contains all the code is:
+\url{https://github.com/faynz/finalproject-log8415}
 
-\bigskip \noindent Running the code with the jar file is the easiest way to run the code without even needing Hadoop configured in the environment. The only requirement is Java to run the jar file and a Linux Distribution.
+\bigskip The link for the youtube demonstration is:
 
-\bigskip \noindent The jar file is located in the \textbf{out/artifacts/PeopleYouMayKnow\_jar/} directory and the command to run it is simply:
+\bigskip \noindent \textbf{The requirements} for this projects are : AWS CLI
 
-\bigskip \textit{java -jar PeopleYouMayKnow.jar path/to/input/file path/to/output/directory}
+\bigskip \noindent To run the code, you simply have to run the bash script named: "launch.sh"
 
 \section{Conclusion} \label{sec:Conclusion}
 \paragraph{}
-In conclusion, this study helped us achieve a deeper understanding of Big Data and how to use software such as Hadoop and Spark to solve intricate data problems. We experimented with simple programs such as a WordCount program and used that knowledge to solve a more complex social networking problem (\textit{People You Might Know Algorithm}). We measured the performances of Hadoop and Spark's software and were able to conclude that in fact Spark operates at a much faster pace than Hadoop. The understanding of these softwares is primordial in today’s world to achieve optimal performances when dealing with large data sets and complex data problems, At last, we are content with the outcome of this assignment. The next step would be to create an application using Apache Spark and see how it performs.
+In conclusion, I am pretty disappointed in the outcome of this final project. I wish I had more time to complete the full project and get to learn how to automate website deployment on EC2 instances as well. I will probably look into it for myself.
+The project was very benificial, I learned a lot about the available services offered by AWS and the platform itself. It was quite interesting to see how quickly and efficient it is. It allows for very quick updates.
 
 \begin{thebibliography} {}
-\bibitem{1} Goran Jevtic. (2020) Hadoop vs Spark -- Detailed Comparison. [Online] \\  Available: \url{https://phoenixnap.com/kb/hadoop-vs-spark#ftoc-heading-4}
-\bibitem{2} IBM Cloud Education. (2021) Hadoop vs. Spark: What's the Difference? [Online] \\ Available: \url{https://www.ibm.com/cloud/blog/hadoop-vs-spark}
-\bibitem{3} Edureka! . (2021) MapReduce Tutorial -- Fundamentals of MapReduce [Online] \\ Available: \url{https://www.edureka.co/blog/mapreduce-tutorial/}
-\bibitem{4} Cloudera. (2021) Developing and running an Apache Spark WordCount application [Online] \\ Available: \url{https://docs.cloudera.com/runtime/7.2.10/developing-spark-applications/topics/spark-develop-run-wordcount-app.html}
-\bibitem{5} The Apache Software Foundation. (2021) Apache Hadoop -- MapReduce Tutorial [Online] \\ Available:\url{https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html}
+\bibitem{1} https://medium.com/@kyle.galbraith/how-to-host-a-website-on-s3-without-getting-lost-in-the-sea-e2b82aa6cd83
+\bibitem{2} https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-s3deploy.html
+\bibitem{3} https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automate-static-website-deployment-to-amazon-s3.html
+\bibitem{4} https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html
+\bibitem{5} https://gist.github.com/shortjared/4c1e3fe52bdfa47522cfe5b41e5d6f22
+\bibitem{6} https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html
+\bibitem{7} https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html
+\bibitem{8} https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#reference-action-artifacts
+\bibitem{9} https://docs.aws.amazon.com/codepipeline/latest/userguide/appendix-github-oauth.html#action-reference-GitHub
+\bibitem{10} https://docs.aws.amazon.com/cli/latest/reference/codepipeline/create-pipeline.html
+
 \end{thebibliography}
 
 \section{Annex} \label{sec:Annex}
-Link to the git repository: \\  \url{https://github.com/ytoubal/MapReduce-with-Hadoop-and-Spark-on-AWS}
+Link to the git repository: \\  \url{https://github.com/faynz/finalproject-log8415}
 \end{document}
 
 \#+end\textsubscript{export}
