@@ -24,7 +24,7 @@ aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://
 # Attaching the S3FullAccess Policy to this role
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name AmazonS3FullAccess --policy-document file://policy_role.json
 
-delay for role to be created
+# delay for role to be created
 sleep 10
 
 # EC2 setup ==========================================================================================
