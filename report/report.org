@@ -229,22 +229,6 @@ This class is used as the output (value of the key-value pair) of the Mapper. It
 
 \paragraph{} By looking at the output file provided by the Hadoop MapReduce job, here are the results we found for the requested users:
 
-\bigskip
-\begin{center}
-  \begin{minipage}{.7\linewidth}
-    924  \hspace{0.9cm}  439, 2409, 6995, 11860, 15416, 43748, 45881 \\
-    8941 \hspace{0.7cm}  8943, 8944, 8940 \\
-    8942 \hspace{0.7cm}  8939, 8940, 8943, 8944 \\
-    9019 \hspace{0.7cm}  9022, 317, 9023 \\
-    9020 \hspace{0.7cm}  9021, 9016, 9017, 9022, 317, 9023 \\
-    9021 \hspace{0.7cm}  9020, 9016, 9017, 9022, 317, 9023 \\
-    9022 \hspace{0.7cm}  9019, 9020, 9021, 317, 9016, 9017, 9023 \\
-    9990 \hspace{0.7cm}  13134, 13478, 13877, 34299, 34485, 34642, 37941 \\
-    9992 \hspace{0.7cm}  9987, 9989, 35667, 9991 \\
-    9993 \hspace{0.7cm}  9991, 13134, 13478, 13877, 34299, 34485, 34642, 37941 \\
-  \end{minipage}
-\end{center}
-
 \section{Instructions to run the code} \label{sec:RunningTheCode}
 
 \subsection{WordCount on Spark}
@@ -265,6 +249,10 @@ This class is used as the output (value of the key-value pair) of the Mapper. It
     \end{minipage}
   \end{center}
 \end{enumerate}
+
+\subsection{AWS Services}
+The main AWS Services used for this project are:
+\bigskip AWS S3
 
 \subsection{Demonstration}
 

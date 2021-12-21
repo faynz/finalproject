@@ -27,6 +27,15 @@ aws iam put-role-policy --role-name $ROLE_NAME --policy-name AmazonS3FullAccess 
 # delay for role to be created
 sleep 10
 
+# pipeline creation
+aws codepipeline create-pipeline --cli-input-json file://pipeline.json --region us-east-1
+
+
+# Get-Info
+# aws codepipeline get-pipeline --name pipeline --region us-east-1
+# aws sts get-caller-identity
+
+
 # EC2 setup ==========================================================================================
 # INSTANCE_PROFILE_NAME="ec2-profile"
 # aws iam create-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME
@@ -54,10 +63,3 @@ sleep 10
 
 # ====================================================================================================
 
-# pipeline creation
-aws codepipeline create-pipeline --cli-input-json file://pipeline.json --region us-east-1
-
-
-# Get-Info
-# aws codepipeline get-pipeline --name pipeline --region us-east-1
-# aws sts get-caller-identity
